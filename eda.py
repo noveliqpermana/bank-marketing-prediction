@@ -12,12 +12,12 @@ def run():
     img = Image.open('telemarketing.jpg')
     st.image(img, caption = 'Photo by: tonodiaz via Magnific')
     multi = """
-    Pelaksanaan direct marketing campaign yang dilakukan oleh bank seringkali memakan banyak biaya dan effort tim marketing dan telemarketing. Hal ini biasa disebabkan oleh kurangnya pre-screening sebelum campaign dieksekusi sehingga banyak leads atau nasabah yang sebetulnya tidak tertarik juga menjadi target dalam campaign tersebut.
+Pelaksanaan direct marketing campaign yang dilakukan oleh bank seringkali memakan banyak biaya dan effort tim marketing dan telemarketing. Hal ini biasa disebabkan oleh kurangnya pre-screening sebelum campaign dieksekusi sehingga banyak leads atau nasabah yang sebetulnya tidak tertarik juga menjadi target dalam campaign tersebut.
 
-    Banyak institusi bank mengalami kesulitan dalam mengidentifikasi leads yang memiliki potensi tinggi untuk menerima tawaran deposit berjangka (term deposit) sehingga menyebabkan cost marketing yang tinggi dan juga conversion yang rendah.
+Banyak institusi bank mengalami kesulitan dalam mengidentifikasi leads yang memiliki potensi tinggi untuk menerima tawaran deposit berjangka (term deposit) sehingga menyebabkan cost marketing yang tinggi dan juga conversion yang rendah.
 
-    Maka dari itu model prediksi ini dibuat untuk membantu tim marketing dalam menentukan profil nasabah mana yang bisa dihubungi lebih lanjut untuk ditawarkan produk deposit berjangka. Project ini bertujuan untuk mencari model algoritma classification terbaik dengan melakukan percobaan ke berbagai jenis algoritma seperti KNN, SVM, Decision Tree, Random Forest dan XGBoost.
-    """
+Maka dari itu model prediksi ini dibuat untuk membantu tim marketing dalam menentukan profil nasabah mana yang bisa dihubungi lebih lanjut untuk ditawarkan produk deposit berjangka. Project ini bertujuan untuk mencari model algoritma classification terbaik dengan melakukan percobaan ke berbagai jenis algoritma seperti KNN, SVM, Decision Tree, Random Forest dan XGBoost.
+"""
     st.markdown(multi)
 
     # load data

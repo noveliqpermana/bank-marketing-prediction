@@ -1,6 +1,5 @@
 import streamlit as st
 import pickle
-import json
 import pandas as pd
 import numpy as np
 from utils import cardinality
@@ -10,6 +9,8 @@ with open('pipeline.pkl', 'rb') as file:
     pipeline = pickle.load(file)
 
 def run():
+    st.write('# Predict Your Leads Here')
+    st.write('### Fill the form below')
     with st.form('prediction form'):
         age = st.number_input('Age: ', min_value = 17, max_value = 100, value = 20)
         job = st.selectbox('Job: ', ['management', 'technician', 'entrepreneur', 'blue-collar', 'unknown', 'retired', 'admin.', 'services', 'self-employed', 'unemployed', 'housemaid', 'student'], index = 4)	
@@ -49,8 +50,6 @@ def run():
 
     data_inf = pd.DataFrame([data_inf])
 
-    st.dataframe(data_inf)
-
     if submitted:
         # predict y
         y_pred_inf = pipeline.predict(data_inf)
@@ -58,10 +57,10 @@ def run():
 
         result = data_inf.copy()
         result['prediction'] = y_pred_inf
-        result['prediction_label'] = result['prediction'].map({0:'Will not subscribe', 1:'Will subscribe'})
+        result['prediction_label'] = result['prediction'].map({0:'will not subscribe', 1:'will subscribe'})
         result['probability'] = y_proba_inf.round(3)
 
-        st.write('## Rating: ', (result['prediction_label'][0]))
+        st.write('## Prediction: This user', (result['prediction_label'][0]))
 
         st.write('### Table Result')
         st.dataframe(result)

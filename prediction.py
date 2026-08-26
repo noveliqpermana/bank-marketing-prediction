@@ -9,8 +9,11 @@ with open('pipeline.pkl', 'rb') as file:
     pipeline = pickle.load(file)
 
 def run():
+    # judul
     st.write('# Predict Your Leads Here')
     st.write('### Fill the form below')
+
+    # buat form
     with st.form('prediction form'):
         age = st.number_input('Age: ', min_value = 17, max_value = 100, value = 20)
         job = st.selectbox('Job: ', ['management', 'technician', 'entrepreneur', 'blue-collar', 'unknown', 'retired', 'admin.', 'services', 'self-employed', 'unemployed', 'housemaid', 'student'], index = 4)	
@@ -30,6 +33,7 @@ def run():
 
         submitted = st.form_submit_button('Predict')
 
+    # masukkan ke dictionary
     data_inf = {
         'age': age,
         'job': job,	
@@ -48,6 +52,7 @@ def run():
         'poutcome': poutcome
     }
 
+    # masukkan ke dataframe
     data_inf = pd.DataFrame([data_inf])
 
     if submitted:
@@ -55,13 +60,16 @@ def run():
         y_pred_inf = pipeline.predict(data_inf)
         y_proba_inf = pipeline.predict_proba(data_inf)[:,1]
 
+        # tambahkan kolom hasil prediksi 
         result = data_inf.copy()
         result['prediction'] = y_pred_inf
         result['prediction_label'] = result['prediction'].map({0:'will not subscribe', 1:'will subscribe'})
         result['probability'] = y_proba_inf.round(3)
 
+        # hasil prediksi dalam text
         st.write('## Prediction: This user', (result['prediction_label'][0]))
 
+        # hasil prediksi dalam tabel
         st.write('### Table Result')
         st.dataframe(result)
 
